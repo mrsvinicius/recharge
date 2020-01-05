@@ -1,0 +1,19 @@
+export const black = '#000000'
+export const darkestGray = '#29292c'
+export const darkGray = '#3D3E44'
+export const darkPurple = '#282B36'
+export const mediumGray = '#9B9AA1'
+export const lightGray = '#DBDBDB'
+export const lightWarmGray = '#F5F5F5'
+export const offWhite = '#B7BDC5'
+export const tan = '#FCF8F2'
+export const thoughtbotRed = '#ED3E44'
+export const transparent = 'rgba(0, 0, 0, 0)'
+export const white = '#FFFFFF'
+
+export const baseText = darkGray
+export const darkText = darkestGray
+export const sectionBackground = lightWarmGray
+export const background = white
+export const selected = thoughtbotRed
+export const unselected = lightGray
