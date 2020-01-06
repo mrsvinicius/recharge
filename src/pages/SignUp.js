@@ -1,62 +1,69 @@
 import React, { useState } from 'react';
-import { View, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import ilustration from '../assets/images/signup-ilustration.png';
 
 export default function SingUp({ navigation }) {
+	const [email, name, phone, password] = '';
+
 	async function handleSubmit() {
 		navigation.navigate('Main');
 	}
 
+	async function handleSignIn() {
+		navigation.navigate('Login');
+	}
+
 	return (
-		<KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
-			<Image source={ilustration} />
+		<KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+			<View style={styles.content}>
+				<Image style={styles.ilustration} source={ilustration} />
 
+				<View style={styles.form}>
+					<TextInput
+						style={styles.input}
+						placeholder="Name"
+						placeholderTextColor="#999"
+						autoCapitalize="words"
+						autoCorrect={false}
+						value={name}
+					/>
 
-			<View style={styles.form}>
-				<TextInput
-					style={styles.input}
-					placeholder="Name"
-					placeholderTextColor="#999"
-					autoCapitalize="words"
-					autoCorrect={false}
-					value={name}
-				/>
+					<TextInput
+						style={styles.input}
+						placeholder="Phone number"
+						placeholderTextColor="#999"
+						autoCapitalize="words"
+						autoCorrect={false}
+						value={phone}
+					/>
 
-				<TextInput
-					style={styles.input}
-					placeholder="Phone number"
-					placeholderTextColor="#999"
-					autoCapitalize="words"
-					autoCorrect={false}
-					value={phone}
-				/>
+					<TextInput
+						style={styles.input}
+						placeholder="E-mail"
+						placeholderTextColor="#999"
+						keyboardType="email-address"
+						autoCapitalize="none"
+						autoCorrect={false}
+						value={email}
+					/>
 
-				<TextInput
-					style={styles.input}
-					placeholder="E-mail"
-					placeholderTextColor="#999"
-					keyboardType="email-address"
-					autoCapitalize="none"
-					autoCorrect={false}
-					value={email}
-				/>
+					<TextInput
+						style={styles.input}
+						placeholder="Password"
+						placeholderTextColor="#999"
+						autoCorrect={false}
+						value={password}
+						underlineColorAndroid="transparent"
+						secureTextEntry={true}
+					/>
 
-				<TextInput
-					style={styles.input}
-					placeholder="Password"
-					placeholderTextColor="#999"
-					autoCorrect={false}
-					value={password}
-					underlineColorAndroid="transparent"
-		  			secureTextEntry={true}
-				/>
+					<TouchableOpacity style={styles.button} onPress={handleSubmit}>
+						<Text style={styles.buttonText}>Cadastrar</Text>
+					</TouchableOpacity>
+				</View>
 
-				<TouchableOpacity style={styles.button} onPress={handleSubmit}>
-					<Text style={styles.buttonText}>Cadastrar</Text>
-				</TouchableOpacity>
-
-				<Text style={styles.signIn}>Do have an already account? <Text style={styles.signInLink} onPress={() => console.log('1st')}>Login</Text></Text>
+				<Text style={styles.signIn}>Do have an already account? <Text style={styles.signInLink} onPress={handleSignIn}>Login</Text></Text>
 			</View>
 		</KeyboardAvoidingView>
 	);
@@ -66,8 +73,19 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
+		alignItems: 'stretch',
 		backgroundColor: '#FFF'
+	},
+
+	content: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: 'center'
+	},
+
+	ilustration: {
+		height: 200,
+		resizeMode: "contain",
 	},
 
 	form: {
@@ -83,14 +101,8 @@ const styles = StyleSheet.create({
 		color: '#B2B2B2',
 		height: 48,
 		marginBottom: 20,
-		borderRadius: 4
-	},
-
-	forgot: {
-		color: '#38D39F',
-		fontSize: 12,
-		justifyContent: 'flex-end',
-		marginBottom: 50
+		borderRadius: 4,
+		paddingHorizontal: 15,
 	},
 
 	button: {
@@ -112,7 +124,9 @@ const styles = StyleSheet.create({
 	signIn: {
 		color: '#B2B2B2',
 		fontSize: 12,
-		justifyContent: 'center'
+		alignSelf: 'center',
+		position: 'absolute',
+		bottom: 25
 	},
 
 	signInLink: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform, Image, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 //import api from '../services/api';
 
@@ -35,43 +35,47 @@ export default function Login({ navigation }) {
 		console.log('Entrar clicado');
 	}
 
+	async function handleSignUp() {
+		navigation.navigate('SignUp');
+	}
+
 	return (
-		<KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
-			<Image source={ilustration} />
+		<KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+			<View style={styles.content}>
+				<Image style={styles.ilustration} source={ilustration} />
 
-			<View style={styles.form}>
-				<TextInput
-					style={styles.input}
-					placeholder="Seu e-mail"
-					placeholderTextColor="#999"
-					keyboardType="email-address"
-					autoCapitalize="none"
-					autoCorrect={false}
-					value={email}
-					onChangeText={setEmail}
-				/>
+				<View style={styles.form}>
+					<TextInput
+						style={styles.input}
+						placeholder="Seu e-mail"
+						placeholderTextColor="#999"
+						keyboardType="email-address"
+						autoCapitalize="none"
+						autoCorrect={false}
+						value={email}
+						onChangeText={setEmail}
+					/>
 
-				<TextInput
-					style={styles.input}
-					placeholder="Sua senha"
-					placeholderTextColor="#999"
-					autoCorrect={false}
-					value={password}
-					underlineColorAndroid="transparent"
-					secureTextEntry={true}
-					onChangeText={setPassword}
-				/>
+					<TextInput
+						style={styles.input}
+						placeholder="Sua senha"
+						placeholderTextColor="#999"
+						autoCorrect={false}
+						value={password}
+						underlineColorAndroid="transparent"
+						secureTextEntry={true}
+						onChangeText={setPassword}
+					/>
 
-				<Text style={styles.forgot}>
-					Esqueci minha senha
-                </Text>
+					<Text style={styles.forgot}>Forgot password?</Text>
 
-				<TouchableOpacity style={styles.button} onPress={handleSubmit}>
-					<Text style={styles.buttonText}>Entrar</Text>
-				</TouchableOpacity>
-
-				<Text style={styles.signUp}>Don't have an account? <Text style={styles.signUpLink} onPress={() => console.log('1st')}>Registre-se</Text></Text>
+					<TouchableOpacity style={styles.button} onPress={handleSubmit}>
+						<Text style={styles.buttonText}>Entrar</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
+
+			<Text style={styles.signUp}>Don't have an account? <Text style={styles.signUpLink} onPress={handleSignUp}>Sign-Up</Text></Text>
 		</KeyboardAvoidingView>
 	);
 }
@@ -80,8 +84,20 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
+		alignItems: 'stretch',
 		backgroundColor: '#FFF'
+	},
+
+	content: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: 'center'
+	},
+
+	ilustration: {
+		marginTop: 20,
+		height: 200,
+		resizeMode: "contain",
 	},
 
 	form: {
@@ -97,13 +113,14 @@ const styles = StyleSheet.create({
 		color: '#B2B2B2',
 		height: 48,
 		marginBottom: 20,
-		borderRadius: 4
+		borderRadius: 4,
+		paddingHorizontal: 15,
 	},
 
 	forgot: {
 		color: '#38D39F',
 		fontSize: 12,
-		justifyContent: 'flex-end',
+		alignSelf: 'flex-end',
 		marginBottom: 50
 	},
 
@@ -125,7 +142,9 @@ const styles = StyleSheet.create({
 	signUp: {
 		color: '#B2B2B2',
 		fontSize: 12,
-		justifyContent: 'center'
+		alignSelf: 'center',
+		position: 'absolute',
+		bottom: 25
 	},
 
 	signUpLink: {
