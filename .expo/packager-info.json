@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 7496,
-  "expoServerNgrokUrl": "https://kq-yaw.anonymous.git.exp.direct",
-  "packagerNgrokUrl": "https://packager.kq-yaw.anonymous.git.exp.direct",
-  "ngrokPid": 1684
+  "packagerPid": 12760,
+  "expoServerNgrokUrl": "https://pa-bi6.anonymous.recharge.exp.direct",
+  "packagerNgrokUrl": "https://packager.pa-bi6.anonymous.recharge.exp.direct",
+  "ngrokPid": 588,
+  "webpackServerPort": null
 }

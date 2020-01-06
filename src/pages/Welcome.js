@@ -12,7 +12,6 @@ export default function Welcome({ navigation }) {
 
 	async function handleSkip() {
 		console.log('Skip clicked!');
-		//await AsyncStorage.setItem('user', 1);
 		navigation.navigate('Login');
 	}
 
