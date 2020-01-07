@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import ilustration from '../assets/images/recharge-new-ilustration.png';
@@ -6,11 +6,11 @@ import ilustration from '../assets/images/recharge-new-ilustration.png';
 export default function RechargeNew({ navigation }) {
 	const [rechargeNumber, setRechargeNumber] = useState('');
 
-	async function handleSubmit() {
+    const handleSubmit = async () => {
 		navigation.navigate('RechargeContact');
 	}
 
-	async function handleSignUp() {
+	const handleSignUp = async () => {
 		navigation.navigate('Recharge');
 	}
 
@@ -38,8 +38,6 @@ export default function RechargeNew({ navigation }) {
 			</View>
 
 			<Text style={styles.signUp}>Ou <Text style={styles.signUpLink} onPress={handleSignUp}>repita</Text> uma recarga anterior</Text>
-
-
 		</KeyboardAvoidingView>
 	);
 }
@@ -107,7 +105,6 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		position: 'absolute',
 		bottom: 25
-
 	},
 
 	signUpLink: {

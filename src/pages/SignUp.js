@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { View, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, View, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import ilustration from '../assets/images/signup-ilustration.png';
 
 export default function SingUp({ navigation }) {
 	const [email, name, phone, password] = '';
 
-	async function handleSubmit() {
+    const handleSubmit = async () => {
 		navigation.navigate('Main');
 	}
 
-	async function handleSignIn() {
+    const handleSignIn = async () => {
 		navigation.navigate('Login');
 	}
 
 	return (
 		<KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
-			<View style={styles.content}>
+			<SafeAreaView style={styles.content}>
 				<Image style={styles.ilustration} source={ilustration} />
 
 				<View style={styles.form}>
@@ -63,8 +63,8 @@ export default function SingUp({ navigation }) {
 					</TouchableOpacity>
 				</View>
 
-				<Text style={styles.signIn}>Do have an already account? <Text style={styles.signInLink} onPress={handleSignIn}>Login</Text></Text>
-			</View>
+				<Text style={styles.signIn}>Já possui uma conta? <Text style={styles.signInLink} onPress={handleSignIn}>Entre</Text></Text>
+			</SafeAreaView>
 		</KeyboardAvoidingView>
 	);
 }

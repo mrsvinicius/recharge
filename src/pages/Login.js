@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Image, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, KeyboardAvoidingView, Image, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 //import api from '../services/api';
 
@@ -19,7 +19,7 @@ export default function Login({ navigation }) {
     }, []);
     */
 
-    async function handleSubmit() {
+   const handleSubmit = async () => {
         /*
         const response = await api.post('/sessions', {
             email
@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
         console.log('Entrar clicado');
     }
 
-    async function handleSignUp() {
+    const handleSignUp = async () => {
         navigation.navigate('Signup');
     }
 
@@ -45,6 +45,7 @@ export default function Login({ navigation }) {
 
     return (
         <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+            <SafeAreaView style={styles.safe}>
             <View style={styles.content}>
                 <Image style={styles.ilustration} source={ilustration} />
 
@@ -79,12 +80,17 @@ export default function Login({ navigation }) {
                 </View>
             </View>
 
-            <Text style={styles.signUp}>Não possui uma conta? <Text style={styles.signUpLink} onPress={handleSignUp}>Sign-Up</Text></Text>
+            <Text style={styles.signUp}>Não possui uma conta? <Text style={styles.signUpLink} onPress={handleSignUp}>Cadastre-se</Text></Text>
+            </SafeAreaView>
         </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
+    safe: {
+        flex: 1,
+    },
+
     container: {
         flex: 1,
         justifyContent: 'center',

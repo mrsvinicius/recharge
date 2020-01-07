@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, AsyncStorage, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, View, AsyncStorage, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function Welcome({ navigation }) {
 	useEffect(() => {
@@ -10,19 +10,19 @@ export default function Welcome({ navigation }) {
 		})
 	}, []);
 
-	async function handleSkip() {
+	const handleSkip = async () => {
 		console.log('Skip clicked!');
 		navigation.navigate('Login');
 	}
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<View style={styles.form}>
 				<TouchableOpacity style={styles.skip} onPress={handleSkip}>
 					<Text style={styles.skipText}>Pular</Text>
 				</TouchableOpacity>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
 

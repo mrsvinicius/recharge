@@ -4,7 +4,7 @@ import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import ilustration from '../assets/images/recharge-ilustration.png';
 
 export default function Recharge({ navigation }) {
-	async function handleNewRecharge() {
+    const handleNewRecharge = async () => {
 		navigation.navigate('RechargeNew');
 	}
 
@@ -13,6 +13,8 @@ export default function Recharge({ navigation }) {
 			<Image style={styles.ilustration} source={ilustration} />
 
 			<View style={styles.form}>
+                <Text style={styles.recharge}>Recargas</Text>
+
 				<TouchableOpacity style={styles.newRecharge} onPress={handleNewRecharge}>
 					<Text style={styles.newRechargeText}>New Recharge</Text>
 				</TouchableOpacity>
@@ -39,7 +41,14 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		height: 200,
 		resizeMode: "contain",
-	},
+    },
+    
+    recharge: {
+        fontSize: 20,
+        color: '#444',
+        alignSelf: 'center',
+        marginBottom: 30
+    },
 
 	newRecharge: {
 		height: 42,
