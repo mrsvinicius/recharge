@@ -1,4 +1,4 @@
-export const black = '#000000'
+export const black = '#000'
 export const darkestGray = '#29292c'
 export const darkGray = '#3D3E44'
 export const darkPurple = '#282B36'
@@ -9,7 +9,7 @@ export const offWhite = '#B7BDC5'
 export const tan = '#FCF8F2'
 export const thoughtbotRed = '#ED3E44'
 export const transparent = 'rgba(0, 0, 0, 0)'
-export const white = '#FFFFFF'
+export const white = '#FFF'
 
 export const baseText = darkGray
 export const darkText = darkestGray
