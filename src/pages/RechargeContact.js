@@ -155,7 +155,7 @@ export default function RechargeContact({ navigation }) {
         arr.map((item) => {				
             let num = item.number.toString().replace('+55', '').replace(/[^\d]+/g, '');
 
-            if(vo.indexOf(num) == -1){
+            if(hasNumber.indexOf(num) == -1){
                 hasNumber.push(num);
                 res.push(item);
             } 
