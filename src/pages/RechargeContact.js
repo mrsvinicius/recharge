@@ -165,7 +165,7 @@ export default function RechargeContact({ navigation }) {
     }
 
     const cleanContact = async (arr) => {
-        return newData = arr.map((contact) => {	
+        return arr.map((contact) => {	
             const phones = contact.phoneNumbers.filter(d => d.number.length > 8);
 
             const phoneNumbers = phones.map((number) => {
@@ -201,11 +201,14 @@ export default function RechargeContact({ navigation }) {
                     cleanContact(data)
                     .then((response) => response)
                     .then((res) => {
-                        console.log(res)
+                        console.log(res);
+						setContacts(res);
                     })
                     .catch((error) =>{
                         console.error(error);
                     });
+					
+					
                 }
             }
         })();        
