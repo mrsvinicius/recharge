@@ -148,6 +148,43 @@ export default function RechargeContact({ navigation }) {
         }
      ]);
 
+    const compareContact = (arr) => {
+        let hasNumber = [];
+        let res = [];
+
+        arr.map((item) => {				
+            let num = item.number.toString().replace('+55', '').replace(/[^\d]+/g, '');
+
+            if(vo.indexOf(num) == -1){
+                hasNumber.push(num);
+                res.push(item);
+            } 
+        });
+
+        return res;
+    }
+
+    const cleanContact = async (arr) => {
+        return newData = arr.map((contact) => {	
+            const phones = contact.phoneNumbers.filter(d => d.number.length > 8);
+
+            const phoneNumbers = phones.map((number) => {
+                let item = new Object();				
+                    item.id = number.id;
+                    item.number = number.number;
+                return item;
+            });
+
+            const numbers = compareContact(phoneNumbers);
+
+            let res = new Object();
+                res.name = contact.name;
+                res.phoneNumbers = numbers;
+
+            return res;				
+        });
+    }
+    
     useEffect(() => {
         (async () => {
             const { status } = await Contacts.requestPermissionsAsync();
@@ -160,6 +197,15 @@ export default function RechargeContact({ navigation }) {
 
                 if (data.length > 0) {
                     setContacts(data);
+
+                    cleanContact(data)
+                    .then((response) => response)
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch((error) =>{
+                        console.error(error);
+                    });
                 }
             }
         })();        
