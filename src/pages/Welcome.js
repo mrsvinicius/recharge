@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
 
 	skip: {
 		height: 42,
-		backgroundColor: '#38D39F',
+		backgroundColor: '#0CA65A',
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 21
 	},
 
 	skipText: {
-		color: '#FFF',
+		color: '#2A2E33',
 		fontWeight: 'bold',
 		fontSize: 16
 	}

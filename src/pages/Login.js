@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     },
 
     signUp: {
-        color: '#B2B2B2',
+        color: '#BCC2C4',
         fontSize: 12,
         alignSelf: 'center',
         position: 'absolute',

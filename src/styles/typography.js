@@ -3,11 +3,16 @@ import * as Colors from './colors'
 export const extraLargeFontSize = 32
 export const largeFontSize = 24
 export const buttonFontSize = 18
-export const baseFontSize = 16
 export const smallFontSize = 14
 export const smallestFontSize = 10
 export const largeHeaderFontSize = 20
 export const headerFontSize = 18
+
+export const xsFontSize = 10
+export const smFontSize = 14
+export const bsFontSize = 16
+export const lgFontSize = 24
+export const xlFontSize = 32
 
 const base = {
 	alignItems: 'center',

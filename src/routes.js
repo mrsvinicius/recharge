@@ -12,7 +12,6 @@ import Test from './pages/Test';
 
 const Routes = createAppContainer(
     createSwitchNavigator({
-        //Test,        
     	Welcome,
         Login,
         ForgotPassword,
@@ -25,3 +24,40 @@ const Routes = createAppContainer(
 );
 
 export default Routes;
+
+/*
+const Routes = createAppContainer(
+    createStackNavigator({      
+    Welcome,
+    Login,
+    ForgotPassword,
+    Signup,
+    Main,
+    Recharge,
+    RechargeNew,
+    RechargeContact
+  }, {
+    defaultNavigationOptions: {
+      headerStyle: {
+        height: 30,
+        backgroundColor: '#FFF',
+        borderBottomColor: "transparent",
+        elevation: 0,
+      },
+      headerBackImage: <Image source={require('./assets/images/back.png')} />,
+      headerBackTitle: null,
+      headerLeftContainerStyle: {
+        alignItems: 'center',
+        marginLeft: 20,
+        paddingRight: 20,
+      },
+      headerRightContainerStyle: {
+        alignItems: 'center',
+        paddingRight: 20,
+      },
+    }
+  })
+);
+
+export default Routes;
+*/

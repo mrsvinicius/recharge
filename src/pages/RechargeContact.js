@@ -165,7 +165,7 @@ export default function RechargeContact({ navigation }) {
     }
 
     const cleanContact = async (arr) => {
-        return arr.map((contact) => {	
+        return arr.map((contact) => {
             const phones = contact.phoneNumbers.filter(d => d.number.length > 8);
 
             const phoneNumbers = phones.map((number) => {
@@ -184,8 +184,9 @@ export default function RechargeContact({ navigation }) {
             return res;				
         });
     }
-    
+
     useEffect(() => {
+        
         (async () => {
             const { status } = await Contacts.requestPermissionsAsync();
             if (status === 'granted') {
@@ -196,22 +197,37 @@ export default function RechargeContact({ navigation }) {
                 });
 
                 if (data.length > 0) {
-                    setContacts(data);
+                    //setContacts(data);
 
                     cleanContact(data)
                     .then((response) => response)
                     .then((res) => {
                         console.log(res);
-						setContacts(res);
+                        
+                        setContacts(res);
                     })
                     .catch((error) =>{
                         console.error(error);
                     });
-					
-					
+
+                    console.log('chamou');
                 }
             }
-        })();        
+        })();
+
+        /*
+        cleanContact(contacts)
+        .then((response) => response)
+        .then((res) => {
+            //console.log(res);
+            
+            setContacts(res);
+        })
+        .catch((error) =>{
+            console.error(error);
+        });
+        */
+
     }, []);
 
     const handleBack = async () => {
@@ -229,11 +245,8 @@ export default function RechargeContact({ navigation }) {
                     style={styles.contactList}
                     data={contacts}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => (
-                        <View
-                            style={styles.listItem}
-                            id={item.id}
-                        >
+                    renderItem={({ item, index}) => (
+                        <View style={styles.listItem} key={item.id.toString()} >
                             <Text style={styles.listLetter}>
                                 {item.name.charAt(0)}
                             </Text>
@@ -244,10 +257,11 @@ export default function RechargeContact({ navigation }) {
                                 </Text>
 
                                 <FlatList
+                                    listKey={ index.toString() }
                                     data={item.phoneNumbers}
-                                    keyExtractor={phone => phone.id}
+                                    keyExtractor={(phone, index) => index }
                                     renderItem={({ item }) => (
-                                        <Text style={styles.phones}>{phoneMask(item.number)}</Text>
+                                        <Text key={item.id} style={styles.phones}>{ phoneMask(item.number) }</Text>
                                     )}
                                 />
                             </View>
@@ -259,6 +273,10 @@ export default function RechargeContact({ navigation }) {
     } else {
         return (
             <View style={styles.container}>
+                <TouchableOpacity style={styles.back} onPress={handleBack}>
+                    <Text style={styles.skipText}>Voltar</Text>
+                </TouchableOpacity>
+
                 <Text style={styles.listLetter}>
                     Por favor liberar acesso aos contatos
                 </Text>
@@ -329,13 +347,13 @@ const styles = StyleSheet.create({
 
     listName: {
         fontSize: 16,
-        color: '#394c53',
+        color: '#656565',
         fontWeight: 'bold',
         marginTop: 5
     },
 
     listPhones: {
-        color: '#72858c',
+        color: '#BCC2C4',
         marginTop: 10
     },
 
