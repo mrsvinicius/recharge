@@ -1,50 +1,115 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
 
-function ContactList({ contacts }){
-	const phoneMask = (n) => {
+class ContactList extends Component {
+	state = {
+		setContacts: null,
+	}
+
+	phoneMask(n){
         return n.toString().replace('+55', '').replace(/[^\d]+/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 	}
 
-	console.log(contacts);
-	return (
-		<FlatList
-			style={styles.contactList}
-			data={contacts}
-			keyExtractor={item => item.id}
-			renderItem={({ item }) => (
-				<View
-					style={styles.listItem}
-					id={item.id}
-				>
-					<Text style={styles.listLetter}>
-						{item.name.charAt(0)}
-					</Text>
+    compareContact(arr){
+        let hasNumber = [];
+        let res = [];
 
-					<View style={styles.listInfo}>
-						<Text style={styles.listName}>
-							{item.name}
+        arr.map((item) => {
+            let num = item.number.toString().replace('+55', '').replace(/[^\d]+/g, '');
+
+            if(hasNumber.indexOf(num) == -1){
+                hasNumber.push(num);
+                res.push(item);
+            }
+        });
+
+        return res;
+    }
+
+    async cleanContact(arr){
+		var i= 0;
+		return arr.map((contact) => {
+			if(i == 10) { return }
+
+			console.log(contact.phoneNumbers);
+			console.log(" -- ");
+
+			const phones = contact.phoneNumbers.filter(d => d.number.length > 8);
+
+            const phoneNumbers = phones.map((number) => {
+                let item = new Object();
+                    item.id = number.id;
+                    item.number = number.number;
+                return item;
+            });
+
+            const numbers = compareContact(phoneNumbers);
+
+            let res = new Object();
+                res.name = contact.name;
+                res.phoneNumbers = numbers;
+
+				i++;
+            return res;
+		});
+	}
+
+	componentDidMount() {
+		this.cleanContact(this.state.contacts)
+		.then((response) => response)
+		.then((res) => {
+			console.log(res);
+			this.setState({ contacts: res });
+		})
+		.catch((error) =>{
+			console.error(error);
+		});
+	}
+
+	render() {
+		const { contacts } = this.props;
+
+		return (
+			<FlatList
+				style={styles.contactList}
+				data={this.state.contacts}
+				keyExtractor={item => item.id}
+				renderItem={({ item, index}) => (
+					<View style={styles.listItem} key={ item.id+index.toString()} >
+						<Text style={styles.listLetter}>
+							{item.name.charAt(0)}
 						</Text>
 
-						<FlatList
-							data={item.phoneNumbers}
-							keyExtractor={phone => phone.id}
-							renderItem={({ item }) => (
-								<View>
-									<Text style={styles.phones}>{phoneMask(item.number)}</Text>
-								</View>
-							)}
-						/>
+						<View style={styles.listInfo}>
+							<Text style={styles.listName}>
+								{item.name}
+							</Text>
+
+							<FlatList
+								listKey={ index.toString() }
+								data={item.phoneNumbers}
+								keyExtractor={(phone, index) => index }
+								renderItem={({ item }) => (
+									<Text key={item.id} style={styles.phones}>{ item.number }</Text>
+								)}
+							/>
+						</View>
 					</View>
-				</View>
-			)}
-		/>
-	)
+				)}
+			/>
+		)
+	}
 }
 
 const styles = StyleSheet.create({
     contactList: {
         flex: 1
+    },
+
+    contactList: {
+        overflow: 'scroll',
+        flex: 1,
+        marginTop: 45
     },
 
     listItem: {
@@ -76,16 +141,19 @@ const styles = StyleSheet.create({
 
     listName: {
         fontSize: 16,
-        color: '#394c53',
+        color: '#656565',
         fontWeight: 'bold',
         marginTop: 5
     },
 
     listPhones: {
-        color: '#72858c',
+        color: '#BCC2C4',
         marginTop: 10
+    },
 
-    }
+    phones: {
+        marginTop: 10
+    },
 });
 
 export default ContactList;

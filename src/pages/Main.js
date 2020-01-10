@@ -18,7 +18,7 @@ export default function Welcome({ navigation }) {
 				<TouchableOpacity style={styles.recharge} onPress={handleRecharge}>
 					<Text style={styles.rechargeText}>Próxima Tela</Text>
 				</TouchableOpacity>
-		
+
 				<TouchableOpacity style={styles.logout} onPress={handleLogout}>
 					<Text style={styles.logoutText}>Sair</Text>
 				</TouchableOpacity>
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
 	rechargeText: {
 		color: '#FFF',
 		fontWeight: 'bold',
-		fontSize: 16
+		fontSize: 16,
     },
-    
+
 	logout: {
 		height: 42,
 		backgroundColor: '#38D39F',

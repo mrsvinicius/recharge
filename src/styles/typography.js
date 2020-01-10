@@ -14,6 +14,8 @@ export const bsFontSize = 16
 export const lgFontSize = 24
 export const xlFontSize = 32
 
+export const bsFontFamily = 'Roboto'
+
 const base = {
 	alignItems: 'center',
 	display: 'flex',
